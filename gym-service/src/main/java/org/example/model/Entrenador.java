@@ -1,9 +1,10 @@
 package org.example.model;
 
+import org.springframework.stereotype.Service;
+
 public class Entrenador {
 
-
-    private int identificacion;
+    private Integer identificacion;
     private String nombre;
     private String email;
     private String password;
@@ -11,7 +12,7 @@ public class Entrenador {
     private String anios_experiencia;
     private String certificaciones;
 
-    public Entrenador(int identificacion, String nombre, String email, String password, String especialidad, String anios_experiencia, String certificaciones) {
+    public Entrenador(Integer identificacion, String nombre, String email, String password, String especialidad, String anios_experiencia, String certificaciones) {
         this.identificacion = identificacion;
         this.nombre = nombre;
         this.email = email;
@@ -21,11 +22,11 @@ public class Entrenador {
         this.certificaciones = certificaciones;
     }
 
-    public int getIdentificacion() {
+    public Integer getIdentificacion() {
         return identificacion;
     }
 
-    public void setIdentificacion(int identificacion) {
+    public void setIdentificacion(Integer identificacion) {
         this.identificacion = identificacion;
     }
 

@@ -2,7 +2,7 @@ package org.example.model;
 
 public class Aprendiz {
 
-    private int identificacion;
+    private Integer identificacion;
     private String nombre;
     private String email;
     private String password;
@@ -12,7 +12,7 @@ public class Aprendiz {
     private String nivel_condicion_fisica;
     private int entrenador_id;
 
-    public Aprendiz(int identificacion, String nombre, String email, String password, String fecha_nacimiento, String genero, String objetivo_entrenamiento, String nivel_condicion_fisica, int entrenador_id) {
+    public Aprendiz(Integer identificacion, String nombre, String email, String password, String fecha_nacimiento, String genero, String objetivo_entrenamiento, String nivel_condicion_fisica, int entrenador_id) {
         this.identificacion = identificacion;
         this.nombre = nombre;
         this.email = email;
@@ -24,11 +24,11 @@ public class Aprendiz {
         this.entrenador_id = entrenador_id;
     }
 
-    public int getIdentificacion() {
+    public Integer getIdentificacion() {
         return identificacion;
     }
 
-    public void setIdentificacion(int identificacion) {
+    public void setIdentificacion(Integer identificacion) {
         this.identificacion = identificacion;
     }
 
