@@ -21,7 +21,7 @@ public class AprendizController {
 
     @PostMapping("/aprendiz")
     public String crearAprendiz(@RequestBody Aprendiz aprendiz){
-        return "";
+        return "se creo";
     }
 
 

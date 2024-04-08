@@ -1,34 +1,55 @@
-package org.example.model;
+package  org.example.model;
 
+import jakarta.persistence.*;
+
+
+import java.util.Date;
+@Entity
+@Table(name = "aprendices")
 public class Aprendiz {
+    @Id
+    @Column(name = "identificacion")
+    private Integer identificacion; // Identificador único del aprendiz.
 
-    private int identificacion;
-    private String nombre;
-    private String email;
-    private String password;
-    private String fecha_nacimiento;
-    private String genero;
-    private String objetivo_entrenamiento;
-    private String nivel_condicion_fisica;
-    private int entrenador_id;
+    @Column(name = "nombre")
+    private String nombre; //completo del aprendiz.
+    @Column(name = "email")
 
-    public Aprendiz(int identificacion, String nombre, String email, String password, String fecha_nacimiento, String genero, String objetivo_entrenamiento, String nivel_condicion_fisica, int entrenador_id) {
-        this.identificacion = identificacion;
-        this.nombre = nombre;
-        this.email = email;
-        this.password = password;
-        this.fecha_nacimiento = fecha_nacimiento;
-        this.genero = genero;
-        this.objetivo_entrenamiento = objetivo_entrenamiento;
-        this.nivel_condicion_fisica = nivel_condicion_fisica;
-        this.entrenador_id = entrenador_id;
+    private String correo;// Dirección de correo electrónico del aprendiz para comunicación.
+    @Column(name = "password")
+    private String password; // Contraseña para acceder al perfil del aprendiz.
+    @Column(name = "fecha_nacimiento")
+    private Date cumpleanos;// Fecha de nacimiento del aprendiz.
+    @Column(name = "genero")
+    private String genero;//nero del aprendiz (masculino, femenino, otro).
+    @Column(name = "objetivo_entrenamiento")
+    private String objetivoEntrenamiento; // Objetivo principal del aprendiz (por ejemplo, perder peso, masa muscular, mejorar la resistencia, etc.).
+    @Column(name = "nivel_condicion_fisica")
+    private String condicionFisica;// Nivel de condición física actual del aprendiz (principiante,intermedio, avanzado).
+    @ManyToOne
+    @JoinColumn(name = "entrenador_id")
+    private Entrenador entrenador;// ID del entrenador asociado al aprendiz.
+
+    public Aprendiz() {
     }
 
-    public int getIdentificacion() {
+    public Aprendiz(Entrenador entrenador, Integer identificacion, String nombre, String correo, String password, Date cumpleanos, String genero, String objetivoEntrenamiento, String condicionFisica) {
+        this.entrenador = entrenador;
+        this.identificacion = identificacion;
+        this.nombre = nombre;
+        this.correo = correo;
+        this.password = password;
+        this.cumpleanos = cumpleanos;
+        this.genero = genero;
+        this.objetivoEntrenamiento = objetivoEntrenamiento;
+        this.condicionFisica = condicionFisica;
+    }
+
+    public Integer getIdentificacion() {
         return identificacion;
     }
 
-    public void setIdentificacion(int identificacion) {
+    public void setIdentificacion(Integer identificacion) {
         this.identificacion = identificacion;
     }
 
@@ -40,12 +61,12 @@ public class Aprendiz {
         this.nombre = nombre;
     }
 
-    public String getEmail() {
-        return email;
+    public String getCorreo() {
+        return correo;
     }
 
-    public void setEmail(String email) {
-        this.email = email;
+    public void setCorreo(String correo) {
+        this.correo = correo;
     }
 
     public String getPassword() {
@@ -56,12 +77,12 @@ public class Aprendiz {
         this.password = password;
     }
 
-    public String getFecha_nacimiento() {
-        return fecha_nacimiento;
+    public Date getCumpleanos() {
+        return cumpleanos;
     }
 
-    public void setFecha_nacimiento(String fecha_nacimiento) {
-        this.fecha_nacimiento = fecha_nacimiento;
+    public void setCumpleanos(Date cumpleanos) {
+        this.cumpleanos = cumpleanos;
     }
 
     public String getGenero() {
@@ -72,27 +93,27 @@ public class Aprendiz {
         this.genero = genero;
     }
 
-    public String getObjetivo_entrenamiento() {
-        return objetivo_entrenamiento;
+    public String getObjetivoEntrenamiento() {
+        return objetivoEntrenamiento;
     }
 
-    public void setObjetivo_entrenamiento(String objetivo_entrenamiento) {
-        this.objetivo_entrenamiento = objetivo_entrenamiento;
+    public void setObjetivoEntrenamiento(String objetivoEntrenamiento) {
+        this.objetivoEntrenamiento = objetivoEntrenamiento;
     }
 
-    public String getNivel_condicion_fisica() {
-        return nivel_condicion_fisica;
+    public String getCondicionFisica() {
+        return condicionFisica;
     }
 
-    public void setNivel_condicion_fisica(String nivel_condicion_fisica) {
-        this.nivel_condicion_fisica = nivel_condicion_fisica;
+    public void setCondicionFisica(String condicionFisica) {
+        this.condicionFisica = condicionFisica;
     }
 
-    public int getEntrenador_id() {
-        return entrenador_id;
+    public Entrenador getEntrenador() {
+        return entrenador;
     }
 
-    public void setEntrenador_id(int entrenador_id) {
-        this.entrenador_id = entrenador_id;
+    public void setEntrenador(Entrenador entrenador) {
+        this.entrenador = entrenador;
     }
 }
