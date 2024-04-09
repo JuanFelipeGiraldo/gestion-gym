@@ -11,7 +11,7 @@ public class EntrenadorService {
      private EntrenadorRepository entrenadorRepository;
 
      public String crearEntrenador(Entrenador entrenador){
-         entrenadorRepository.save(entrenador);
+        entrenadorRepository.save(entrenador);
          return "exitoso";
      }
 }
