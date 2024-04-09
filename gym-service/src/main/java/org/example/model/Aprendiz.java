@@ -14,7 +14,6 @@ public class Aprendiz {
     @Column(name = "nombre")
     private String nombre; //completo del aprendiz.
     @Column(name = "email")
-
     private String correo;// Dirección de correo electrónico del aprendiz para comunicación.
     @Column(name = "password")
     private String password; // Contraseña para acceder al perfil del aprendiz.
