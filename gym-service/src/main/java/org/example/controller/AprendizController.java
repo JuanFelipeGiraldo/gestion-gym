@@ -22,7 +22,8 @@ public class AprendizController {
 
     @PostMapping("/aprendiz")
     public String crearAprendiz(@RequestBody Aprendiz aprendiz){
-        return "se creo";
+        aprendizService.crearAprendiz(aprendiz);
+        return "se creo aprendiz";
     }
 
 

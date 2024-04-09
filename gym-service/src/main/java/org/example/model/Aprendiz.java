@@ -9,7 +9,7 @@ import java.util.Date;
 public class Aprendiz {
     @Id
     @Column(name = "identificacion")
-    private Integer identificacion; // Identificador único del aprendiz.
+    private int identificacion; // Identificador único del aprendiz.
 
     @Column(name = "nombre")
     private String nombre; //completo del aprendiz.
@@ -33,7 +33,7 @@ public class Aprendiz {
     public Aprendiz() {
     }
 
-    public Aprendiz(Entrenador entrenador, Integer identificacion, String nombre, String correo, String password, Date cumpleanos, String genero, String objetivoEntrenamiento, String condicionFisica) {
+    public Aprendiz(Entrenador entrenador, int identificacion, String nombre, String correo, String password, Date cumpleanos, String genero, String objetivoEntrenamiento, String condicionFisica) {
         this.entrenador = entrenador;
         this.identificacion = identificacion;
         this.nombre = nombre;
