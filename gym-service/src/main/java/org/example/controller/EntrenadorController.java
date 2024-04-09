@@ -22,6 +22,7 @@ public class EntrenadorController {
 
     @PostMapping("/entrenador")
     public String crearEntrenador(@RequestBody Entrenador entrenador){
+        entrenadorService.crearEntrenador(entrenador);
         return "se creo";
     }
 

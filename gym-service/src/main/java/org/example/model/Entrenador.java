@@ -8,7 +8,7 @@ import java.util.List;
 @Table(name = "entrenadores")
 public class Entrenador {
     @Id
-    @Column(name = "idendificacion")
+    @Column(name = "identificacion")
     private Integer identificacion;
 
     @Column(name = "nombre")
