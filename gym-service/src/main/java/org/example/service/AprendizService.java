@@ -10,8 +10,8 @@ public class AprendizService {
     @Autowired
     private AprendizRepository aprendizRepository;
 
-    public Aprendiz crearAprendiz(Aprendiz aprendiz){
+    public String crearAprendiz(Aprendiz aprendiz){
         aprendizRepository.save(aprendiz);
-        return aprendiz;
+        return "se creo Aprendiz";
     }
 }

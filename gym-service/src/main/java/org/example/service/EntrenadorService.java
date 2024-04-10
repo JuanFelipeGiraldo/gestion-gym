@@ -10,8 +10,9 @@ public class EntrenadorService {
     @Autowired
      private EntrenadorRepository entrenadorRepository;
 
-     public Entrenador crearEntrenador(Entrenador entrenador){
+    public String crearEntrenador(Entrenador entrenador){
         entrenadorRepository.save(entrenador);
-        return entrenador;
-     }
+
+        return "exitoso";
+    }
 }
