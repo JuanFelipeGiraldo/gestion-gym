@@ -1,40 +1,20 @@
-package org.example.model;
-
-import jakarta.persistence.*;
-
+package org.example.dto;
 
 import java.util.Date;
 
-@Entity
-@Table(name = "aprendices")
-public class Aprendiz {
-    @Id
-    @Column(name = "identificacion")
+public class AprendizRequest {
+
     private int identificacion; // Identificador único del aprendiz.
-
-    @Column(name = "nombre")
     private String nombre; //completo del aprendiz.
-    @Column(name = "email")
     private String correo;// Dirección de correo electrónico del aprendiz para comunicación.
-    @Column(name = "password")
     private String password; // Contraseña para acceder al perfil del aprendiz.
-    @Column(name = "fecha_nacimiento")
     private Date cumpleanos;// Fecha de nacimiento del aprendiz.
-    @Column(name = "genero")
     private String genero;//nero del aprendiz (masculino, femenino, otro).
-    @Column(name = "objetivo_entrenamiento")
     private String objetivoEntrenamiento; // Objetivo principal del aprendiz (por ejemplo, perder peso, masa muscular, mejorar la resistencia, etc.).
-    @Column(name = "nivel_condicion_fisica")
     private String condicionFisica;// Nivel de condición física actual del aprendiz (principiante,intermedio, avanzado).
-    @ManyToOne
-    @JoinColumn(name = "entrenador_id")
-    private Entrenador entrenador;// ID del entrenador asociado al aprendiz.
+    private int identificadorEntrenador;
 
-    public Aprendiz() {
-    }
-
-    public Aprendiz(Entrenador entrenador, int identificacion, String nombre, String correo, String password, Date cumpleanos, String genero, String objetivoEntrenamiento, String condicionFisica) {
-        this.entrenador = entrenador;
+    public AprendizRequest(int identificacion, String nombre, String correo, String password, Date cumpleanos, String genero, String objetivoEntrenamiento, String condicionFisica, int identificadorEntrenador) {
         this.identificacion = identificacion;
         this.nombre = nombre;
         this.correo = correo;
@@ -43,13 +23,14 @@ public class Aprendiz {
         this.genero = genero;
         this.objetivoEntrenamiento = objetivoEntrenamiento;
         this.condicionFisica = condicionFisica;
+        this.identificadorEntrenador = identificadorEntrenador;
     }
 
-    public Integer getIdentificacion() {
+    public int getIdentificacion() {
         return identificacion;
     }
 
-    public void setIdentificacion(Integer identificacion) {
+    public void setIdentificacion(int identificacion) {
         this.identificacion = identificacion;
     }
 
@@ -109,11 +90,11 @@ public class Aprendiz {
         this.condicionFisica = condicionFisica;
     }
 
-    public Entrenador getEntrenador() {
-        return entrenador;
+    public int getIdentificadorEntrenador() {
+        return identificadorEntrenador;
     }
 
-    public void setEntrenador(Entrenador entrenador) {
-        this.entrenador = entrenador;
+    public void setIdentificadorEntrenador(int identificadorEntrenador) {
+        this.identificadorEntrenador = identificadorEntrenador;
     }
 }

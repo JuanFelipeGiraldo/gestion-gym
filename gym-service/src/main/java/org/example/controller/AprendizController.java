@@ -4,6 +4,7 @@ import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import io.swagger.v3.oas.annotations.responses.ApiResponses;
 import io.swagger.v3.oas.annotations.tags.Tag;
+import org.example.dto.AprendizRequest;
 import org.example.model.Aprendiz;
 import org.example.service.AprendizService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -31,10 +32,8 @@ public class AprendizController {
             @ApiResponse(responseCode = "400", description = "Error de usuario. La solicitud es incorrecta"),
             @ApiResponse(responseCode = "500", description = "Error interno del servidor.")
     })
-
-    public Aprendiz crearAprendiz(@RequestBody Aprendiz aprendiz){
-        aprendizService.crearAprendiz(aprendiz);
-        return aprendiz;
+    public String crearAprendiz(@RequestBody AprendizRequest aprendizRequest){
+        return  aprendizService.crearAprendiz(aprendizRequest);
     }
 
 

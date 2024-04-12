@@ -30,8 +30,7 @@ public class EntrenadorController {
             @ApiResponse(responseCode = "500", description = "Error interno del servidor.")
     })
     @PostMapping("/entrenador")
-    public Entrenador crearEntrenador(@RequestBody Entrenador entrenador){
-        entrenadorService.crearEntrenador(entrenador);
-        return entrenador;
+    public String crearEntrenador(@RequestBody Entrenador entrenador){
+        return entrenadorService.crearEntrenador(entrenador);
     }
 }
