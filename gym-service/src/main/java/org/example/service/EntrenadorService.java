@@ -7,12 +7,16 @@ import org.springframework.stereotype.Service;
 
 @Service
 public class EntrenadorService {
-    @Autowired
+
      private EntrenadorRepository entrenadorRepository;
 
-    public String crearEntrenador(Entrenador entrenador){
-        entrenadorRepository.save(entrenador);
+    @Autowired
+    public EntrenadorService(EntrenadorRepository entrenadorRepository) {
+        this.entrenadorRepository = entrenadorRepository;
+    }
 
-        return "exitoso";
+    public Entrenador crearEntrenador(Entrenador entrenador){
+        entrenadorRepository.save(entrenador);
+        return entrenador;
     }
 }
