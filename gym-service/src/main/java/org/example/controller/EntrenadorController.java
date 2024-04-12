@@ -17,6 +17,13 @@ import org.springframework.web.bind.annotation.*;
 @Tag(name = "Entrenador", description = "Controller Entrenador")
 public class EntrenadorController {
 
+    private final EntrenadorService entrenadorService;
+
+    @Autowired
+    public EntrenadorController(EntrenadorService entrenadorService) {
+        this.entrenadorService = entrenadorService;
+    }
+
     @Operation(
             summary = "Crear un entrenador",
             description = "Crear un nuevo entrenador en la base de datos SQL.")
@@ -31,11 +38,5 @@ public class EntrenadorController {
         return new ResponseEntity<>(crearEntrenador, HttpStatus.OK);
     }
 
-    private final EntrenadorService entrenadorService;
-
-    @Autowired
-    public EntrenadorController(EntrenadorService entrenadorService) {
-        this.entrenadorService = entrenadorService;
-    }
 
 }
