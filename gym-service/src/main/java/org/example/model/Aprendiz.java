@@ -8,6 +8,7 @@ import java.util.Date;
 @Entity
 @Table(name = "aprendices")
 public class Aprendiz {
+
     @Id
     @Column(name = "identificacion")
     private int identificacion; // Identificador único del aprendiz.

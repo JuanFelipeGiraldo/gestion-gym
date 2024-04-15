@@ -1,6 +1,7 @@
 package org.example.service;
 
-import org.example.dto.AprendizRequest;
+import org.example.dto.AprendizDTO;
+import org.example.exception.GymRequestException;
 import org.example.model.Aprendiz;
 import org.example.model.Entrenador;
 import org.example.repository.AprendizRepository;
@@ -20,16 +21,16 @@ public class AprendizService { @Autowired
         this.entrenadorService = entrenadorService;
     }
 
-    public String crearAprendiz(AprendizRequest aprendizRequest) {
-        entrenador = entrenadorService.obtenerEntrenadorPorId(aprendizRequest.getIdentificadorEntrenador());
+    public String crearAprendiz(AprendizDTO aprendizDTO) throws GymRequestException {
+        entrenador = entrenadorService.obtenerEntrenadorPorId(aprendizDTO.getIdentificadorEntrenador());
         if (entrenador == null) {
             return "No se encontro ningun entrenador con la identificacion proporcionada ";
         } else {
-            Aprendiz aprendiz = new Aprendiz(entrenador, aprendizRequest.getIdentificacion(),
-                    aprendizRequest.getNombre(), aprendizRequest.getCorreo(),
-                    aprendizRequest.getPassword(), aprendizRequest.getCumpleanos(),
-                    aprendizRequest.getGenero(), aprendizRequest.getObjetivoEntrenamiento(),
-                    aprendizRequest.getCondicionFisica());
+            Aprendiz aprendiz = new Aprendiz(entrenador, aprendizDTO.getIdentificacion(),
+                    aprendizDTO.getNombre(), aprendizDTO.getCorreo(),
+                    aprendizDTO.getPassword(), aprendizDTO.getCumpleanos(),
+                    aprendizDTO.getGenero(), aprendizDTO.getObjetivoEntrenamiento(),
+                    aprendizDTO.getCondicionFisica());
 
             aprendizRepository.save(aprendiz);
             return "Se creo el aprendiz satisfactoriamente";
