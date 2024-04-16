@@ -14,9 +14,12 @@ import org.example.repository.AprendizRepository;
 import org.example.repository.EntrenadorRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 @Service
 public class AprendizService {
@@ -34,34 +37,107 @@ public class AprendizService {
 
     public AprendizResponseDTO crearAprendiz(AprendizDTO aprendizDTO) throws GymRequestException {
 
-        int idAprendiz = aprendizDTO.getIdentificacion();
-        int idEntrenador = aprendizDTO.getIdentificacionEntrenador();
-        Entrenador entrenador = entrenadorService.consultarEntrenadorPorId(idEntrenador);
+        Optional<Aprendiz> aprendiz = aprendizRepository
+                .findById(aprendizDTO.getIdentificacion());
+        Optional<Entrenador> entrenador = entrenadorRepository
+                .findById(aprendizDTO.getIdentificacionEntrenador());
 
-        Optional<Aprendiz> aprendizBuscado = aprendizRepository.findById(idAprendiz);
-        Optional<Entrenador> entrenadorBuscado = entrenadorRepository.findById(idEntrenador);
-
-        if (aprendizBuscado.isPresent()) {
+        if (aprendiz.isPresent()) {
             throw new GymRequestException("El aprendiz ya existe",
-                    new GymDetailsException("El aprendiz con id " + idAprendiz+ " ya se encuentra registrado",
+                    new GymDetailsException("El aprendiz con id " + aprendizDTO.getIdentificacion() + " ya se encuentra registrado",
                             HttpStatus.CONFLICT));
         }
 
-        if (entrenadorBuscado.isEmpty()) {
+        if (entrenador.isEmpty()) {
             throw new GymRequestException("No se encontró el entrenador.",
-                    new GymDetailsException("El entrenador con id " + idEntrenador + " no está registrado",
+                    new GymDetailsException("El entrenador con id " + aprendizDTO.getIdentificacionEntrenador() + " no está registrado",
                             HttpStatus.NOT_FOUND));
         }
 
-        Aprendiz aprendiz = AprendizMapper.INSTANCE.aprendizDtoToAprendiz(aprendizDTO);
-        aprendiz.setEntrenador(entrenador);
+        /*Aprendiz aprendiz = AprendizMapper.INSTANCE.aprendizDtoToAprendiz(aprendizDTO);
+        aprendiz.setEntrenador(entrenador);*/
+/*
+        EntrenadorAsociadoDTO entrenadorAsociado = EntrenadorMapper.INSTANCE.entrenadorToEntrenadorAsociado(entrenador);
+        AprendizResponseDTO aprendizResponseDto = AprendizMapper.INSTANCE.aprendizDtoToAprendizResponse(aprendizDTO);
+        aprendizResponseDto.setEntrenadorAsociado(entrenadorAsociado);*/
+
+        aprendizRepository.save( mapearDtoAprendiz( aprendizDTO, entrenador.get() ));
+
+        return mapearDtoAprendizResponse(aprendizDTO, entrenador.get());
+    }
+
+    public List<AprendizResponseDTO> consultarAprendices(){
+        List<Aprendiz> aprendices = aprendizRepository.findAll();
+        List<AprendizResponseDTO> aprendicesResponse = aprendices.stream()
+                .map(AprendizMapper.INSTANCE::aprendizToAprendizResponse)
+                .collect(Collectors.toList());
+
+        return aprendicesResponse;
+    }
+
+    public AprendizResponseDTO consultarAprendizPorId(int identificacion) throws GymRequestException {
+
+        Optional<Aprendiz> aprendiz = aprendizRepository.findById(identificacion);
+        if (aprendiz.isEmpty()) {
+            throw new GymRequestException("No se encontró el aprendiz.",
+                    new GymDetailsException("El aprendiz con id " + identificacion + " no está registrado",
+                            HttpStatus.NOT_FOUND));
+        }
+        return AprendizMapper.INSTANCE.aprendizToAprendizResponse(aprendiz.get());
+    }
+
+    public AprendizResponseDTO actualizarAprendiz(AprendizDTO aprendizDTO) throws GymRequestException {
+
+        Optional<Aprendiz> aprendiz = aprendizRepository
+                .findById(aprendizDTO.getIdentificacion());
+        Optional<Entrenador> entrenador = entrenadorRepository
+                .findById(aprendizDTO.getIdentificacionEntrenador());
+
+        if (aprendiz.isEmpty()) {
+            throw new GymRequestException("No se encontró el aprendiz.",
+                    new GymDetailsException("El aprendiz no está registrado",
+                            HttpStatus.NOT_FOUND));
+        }
+
+        if (entrenador.isEmpty()) {
+            throw new GymRequestException("No se encontró el entrenador.",
+                    new GymDetailsException("El entrenador con id " + aprendizDTO.getIdentificacionEntrenador() +
+                            " no está registrado o no está asociado al aprendiz",
+                            HttpStatus.NOT_FOUND));
+        }
+        aprendizRepository.save( mapearDtoAprendiz( aprendizDTO, entrenador.get() ));
+
+        return mapearDtoAprendizResponse(aprendizDTO, entrenador.get());
+    }
+
+    public void eliminarAprendizPorId(int identificacion) throws GymRequestException {
+
+        Optional<Aprendiz> aprendiz = aprendizRepository.findById(identificacion);
+        if (aprendiz.isEmpty()) {
+            throw new GymRequestException("No se encontró el aprendiz.",
+                    new GymDetailsException("El aprendiz con id " + identificacion + " no está registrado",
+                            HttpStatus.NOT_FOUND));
+        }
+        aprendizRepository.deleteById(identificacion);
+    }
+
+    public AprendizResponseDTO mapearDtoAprendizResponse(AprendizDTO aprendizDTO, Entrenador entrenador){
 
         EntrenadorAsociadoDTO entrenadorAsociado = EntrenadorMapper.INSTANCE.entrenadorToEntrenadorAsociado(entrenador);
 
         AprendizResponseDTO aprendizResponseDto = AprendizMapper.INSTANCE.aprendizDtoToAprendizResponse(aprendizDTO);
         aprendizResponseDto.setEntrenadorAsociado(entrenadorAsociado);
 
-        aprendizRepository.save(aprendiz);
         return aprendizResponseDto;
     }
+
+    public Aprendiz mapearDtoAprendiz(AprendizDTO aprendizDTO, Entrenador entrenador){
+
+        Aprendiz aprendiz = AprendizMapper.INSTANCE.aprendizDtoToAprendiz(aprendizDTO);
+        aprendiz.setEntrenador(entrenador);
+
+        return aprendiz;
+    }
+
+
 }

@@ -19,5 +19,7 @@ public interface AprendizMapper {
 
     AprendizResponseDTO aprendizDtoToAprendizResponse(AprendizDTO aprendizDTO);
 
+    AprendizResponseDTO aprendizToAprendizResponse(Aprendiz aprendiz);
+
 
 }
