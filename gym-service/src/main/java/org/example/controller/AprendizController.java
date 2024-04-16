@@ -1,16 +1,23 @@
 package org.example.controller;
 
-import org.example.model.Aprendiz;
+import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.responses.ApiResponse;
+import io.swagger.v3.oas.annotations.responses.ApiResponses;
+import io.swagger.v3.oas.annotations.tags.Tag;
+import jakarta.validation.Valid;
+import org.example.dto.AprendizDTO;
+import org.example.dto.AprendizResponseDTO;
+import org.example.exception.GymRequestException;
 import org.example.service.AprendizService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.MethodArgumentNotValidException;
+import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping("api/")
+@Tag(name="Recurso Aprendiz")
 public class AprendizController {
 
     private final AprendizService aprendizService;
@@ -20,10 +27,23 @@ public class AprendizController {
         this.aprendizService = aprendizService;
     }
 
+    @Operation(summary = "Crear un nuevo aprendiz", description = "Crea un nuevo aprendiz en la base de datos SQL.")
+    @ApiResponses(value ={
+            @ApiResponse(responseCode = "200", description = "Aprendiz creado exitosamente."),
+            @ApiResponse(responseCode = "400", description = "Error de usuario. La solicitud es incorrecta"),
+            @ApiResponse(responseCode = "404", description = "Error de usuario. No existe el recurso solicitado"),
+            @ApiResponse(responseCode = "500", description = "Error interno del servidor.")
+    })
     @PostMapping("/aprendiz")
-    public String crearAprendiz(@RequestBody Aprendiz aprendiz){
-        return "se creo";
+    public ResponseEntity<AprendizResponseDTO> crearAprendiz(@RequestBody @Valid AprendizDTO aprendizDTO ) throws GymRequestException {
+        AprendizResponseDTO response = aprendizService.crearAprendiz(aprendizDTO);
+        return new ResponseEntity<>(response, HttpStatus.CREATED);
     }
+
+    /*@GetMapping("/aprendiz/{identificacion}")
+    public ResponseEntity<AprendizResponseDTO> consultarAprendizPorId(@PathVariable("identificacion") int identificacion){
+
+    }*/
 
 
 

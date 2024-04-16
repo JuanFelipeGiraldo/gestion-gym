@@ -1,42 +1,34 @@
-package org.example.model;
+package org.example.dto;
 
-import jakarta.persistence.*;
 
-import java.util.List;
+import jakarta.validation.constraints.Email;
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotNull;
 
-@Entity
-@Table(name = "entrenadores")
-public class Entrenador {
-    @Id
-    @Column(name = "identificacion")
+public class EntrenadorDTO {
+
+    @NotNull
     private int identificacion;
 
-    @Column(name = "nombre")
+    @NotBlank
     private String nombre;
 
-    @Column(name = "email")
+    @Email
     private String email;
 
-    @Column(name = "password")
+    @NotBlank
     private String password;
 
-    @Column(name = "especialidad")
+    @NotBlank
     private String especialidad;
 
-    @Column(name = "experiencia")
+    @NotNull
     private int experiencia;
 
-    @Column(name = "certificaciones")
     private String certificaciones;
 
-    @OneToMany(mappedBy = "entrenador", cascade = CascadeType.ALL)
-    private List<Aprendiz> aprendices;
-
-    public Entrenador() {
-    }
-
-    public Entrenador(int identificador, String nombre, String email, String password, String especialidad, int experiencia, String certificaciones) {
-        this.identificacion = identificador;
+    public EntrenadorDTO(int identificacion, String nombre, String email, String password, String especialidad, int experiencia, String certificaciones) {
+        this.identificacion = identificacion;
         this.nombre = nombre;
         this.email = email;
         this.password = password;
@@ -101,4 +93,3 @@ public class Entrenador {
         this.certificaciones = certificaciones;
     }
 }
-

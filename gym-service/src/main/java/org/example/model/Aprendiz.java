@@ -1,20 +1,21 @@
-package  org.example.model;
+package org.example.model;
 
 import jakarta.persistence.*;
 
 
 import java.util.Date;
+
 @Entity
 @Table(name = "aprendices")
 public class Aprendiz {
+
     @Id
     @Column(name = "identificacion")
-    private Integer identificacion; // Identificador único del aprendiz.
+    private int identificacion; // Identificador único del aprendiz.
 
     @Column(name = "nombre")
     private String nombre; //completo del aprendiz.
     @Column(name = "email")
-
     private String correo;// Dirección de correo electrónico del aprendiz para comunicación.
     @Column(name = "password")
     private String password; // Contraseña para acceder al perfil del aprendiz.
@@ -33,7 +34,7 @@ public class Aprendiz {
     public Aprendiz() {
     }
 
-    public Aprendiz(Entrenador entrenador, Integer identificacion, String nombre, String correo, String password, Date cumpleanos, String genero, String objetivoEntrenamiento, String condicionFisica) {
+    public Aprendiz(Entrenador entrenador, int identificacion, String nombre, String correo, String password, Date cumpleanos, String genero, String objetivoEntrenamiento, String condicionFisica) {
         this.entrenador = entrenador;
         this.identificacion = identificacion;
         this.nombre = nombre;
