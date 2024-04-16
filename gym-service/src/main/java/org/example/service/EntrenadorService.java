@@ -1,6 +1,5 @@
 package org.example.service;
 
-import jakarta.persistence.EntityNotFoundException;
 import org.example.exception.GymDetailsException;
 import org.example.exception.GymRequestException;
 import org.example.model.Entrenador;
@@ -26,7 +25,7 @@ public class EntrenadorService {
         return "Se creo entrenador";
     }
 
-    public Entrenador obtenerEntrenadorPorId(int identificacion) throws GymRequestException {
+    public Entrenador consultarEntrenadorPorId(int identificacion) throws GymRequestException {
 
         // Optional class: su objetivo es evitar un nullPointerException, objetos nulos
         Optional<Entrenador> entrenadorEncontrado = entrenadorRepository.findById(identificacion);

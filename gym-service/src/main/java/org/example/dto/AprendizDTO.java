@@ -32,7 +32,7 @@ public class AprendizDTO {
     private String condicionFisica;
 
     @NotNull
-    private int identificadorEntrenador;
+    private int identificacionEntrenador;
 
     public AprendizDTO(int identificacion, String nombre, String correo, String password, Date cumpleanos, String genero, String objetivoEntrenamiento, String condicionFisica, int identificadorEntrenador) {
         this.identificacion = identificacion;
@@ -43,7 +43,7 @@ public class AprendizDTO {
         this.genero = genero;
         this.objetivoEntrenamiento = objetivoEntrenamiento;
         this.condicionFisica = condicionFisica;
-        this.identificadorEntrenador = identificadorEntrenador;
+        this.identificacionEntrenador = identificadorEntrenador;
     }
 
     public int getIdentificacion() {
@@ -110,11 +110,11 @@ public class AprendizDTO {
         this.condicionFisica = condicionFisica;
     }
 
-    public int getIdentificadorEntrenador() {
-        return identificadorEntrenador;
+    public int getIdentificacionEntrenador() {
+        return identificacionEntrenador;
     }
 
-    public void setIdentificadorEntrenador(int identificadorEntrenador) {
-        this.identificadorEntrenador = identificadorEntrenador;
+    public void setIdentificacionEntrenador(int identificacionEntrenador) {
+        this.identificacionEntrenador = identificacionEntrenador;
     }
 }
