@@ -1,6 +1,5 @@
 package org.example.service;
 
-import org.example.comunication.ComumicationServiceImp;
 import org.example.comunication.ComunicationService;
 import org.example.model.Entrenamiento;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -9,13 +8,16 @@ import org.springframework.stereotype.Service;
 @Service
 public class EntrenamientoService {
 
-private ComumicationServiceImp comumicationServiceImp;
+private ComunicationService comumicationService;
     @Autowired
-    public EntrenamientoService(ComumicationServiceImp comumicationServiceImp) {
-        this.comumicationServiceImp = comumicationServiceImp;
+    public EntrenamientoService(ComunicationService comumicationService) {
+        this.comumicationService = comumicationService;
     }
 
+
+
+
     public String registrarEntrenamiento(Entrenamiento entrenamiento){
-        return comumicationServiceImp.registrarEntrenamiento(entrenamiento);
+        return comumicationService.registrarEntrenamiento(entrenamiento);
     }
 }
