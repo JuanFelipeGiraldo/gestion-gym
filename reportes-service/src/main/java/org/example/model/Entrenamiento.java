@@ -4,6 +4,7 @@ import java.util.Date;
 
 public class Entrenamiento {
 // auto incrementable
+
     private int id;
     private String categoria;
     private Date fecha;
