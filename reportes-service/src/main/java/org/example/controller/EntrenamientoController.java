@@ -18,7 +18,8 @@ public class EntrenamientoController {
 
     @PostMapping("/entrenamiento")
     public String registrarEntrenamiento(@RequestBody Entrenamiento entrenamiento )  {
-        return "se recibio ";
+
+        return entrenamientoService.registrarEntrenamiento(entrenamiento);
     }
 
 

@@ -1,26 +1,35 @@
 package org.example.model;
 
 import java.util.Date;
+import java.util.UUID;
 
 public class Entrenamiento {
-// auto incrementable
-    private int id;
+    private int aprendiz_id;
+    private String id;
     private String categoria;
     private Date fecha;
-    private int aprendiz_id;
 
-    public Entrenamiento(int id, String categoria, Date fecha, int aprendiz_id) {
-        this.id = id;
+
+    public Entrenamiento( String categoria, Date fecha, int aprendiz_id) {
+        this.id = UUID.randomUUID().toString();;
         this.categoria = categoria;
         this.fecha = fecha;
         this.aprendiz_id = aprendiz_id;
     }
 
-    public int getId() {
+    public int getAprendiz_id() {
+        return aprendiz_id;
+    }
+
+    public void setAprendiz_id(int aprendiz_id) {
+        this.aprendiz_id = aprendiz_id;
+    }
+
+    public String getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(String id) {
         this.id = id;
     }
 
@@ -38,13 +47,5 @@ public class Entrenamiento {
 
     public void setFecha(Date fecha) {
         this.fecha = fecha;
-    }
-
-    public int getAprendiz_id() {
-        return aprendiz_id;
-    }
-
-    public void setAprendiz_id(int aprendiz_id) {
-        this.aprendiz_id = aprendiz_id;
     }
 }

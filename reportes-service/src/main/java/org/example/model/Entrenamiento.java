@@ -1,27 +1,30 @@
 package org.example.model;
 
+import org.springframework.data.annotation.Id;
+import org.springframework.data.mongodb.core.mapping.Document;
+
 import java.util.Date;
-
+@Document(collection = "registro")
 public class Entrenamiento {
-// auto incrementable
 
-    private int id;
+    @Id
+    private String id;
     private String categoria;
     private Date fecha;
     private int aprendiz_id;
 
-    public Entrenamiento(int id, String categoria, Date fecha, int aprendiz_id) {
+    public Entrenamiento(String id, String categoria, Date fecha, int aprendiz_id) {
         this.id = id;
         this.categoria = categoria;
         this.fecha = fecha;
         this.aprendiz_id = aprendiz_id;
     }
 
-    public int getId() {
+    public String getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(String id) {
         this.id = id;
     }
 
