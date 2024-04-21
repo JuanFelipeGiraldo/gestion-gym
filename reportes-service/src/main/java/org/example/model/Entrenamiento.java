@@ -4,6 +4,7 @@ import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 
 import java.util.Date;
+
 @Document(collection = "registro")
 public class Entrenamiento {
 
@@ -20,13 +21,9 @@ public class Entrenamiento {
         this.aprendiz_id = aprendiz_id;
     }
 
-    public String getId() {
-        return id;
-    }
+    public String getId() { return id; }
 
-    public void setId(String id) {
-        this.id = id;
-    }
+    public void setId(String id) {this.id = id;}
 
     public String getCategoria() {
         return categoria;

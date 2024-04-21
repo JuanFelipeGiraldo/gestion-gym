@@ -10,12 +10,13 @@ import org.springframework.stereotype.Service;
 public class EntrenamientoService {
 
     private EntrenamientoRepository entrenamientoRepository;
-@Autowired
+
+    @Autowired
     public EntrenamientoService(EntrenamientoRepository entrenamientoRepository) {
         this.entrenamientoRepository = entrenamientoRepository;
     }
 
-    public String registrarEntrenamiento(Entrenamiento entrenamiento){
+    public String registrarEntrenamiento(Entrenamiento entrenamiento) {
         entrenamientoRepository.save(entrenamiento);
         return "se registro el entrenamiento";
     }

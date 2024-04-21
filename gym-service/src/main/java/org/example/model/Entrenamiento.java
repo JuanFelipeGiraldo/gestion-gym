@@ -2,10 +2,12 @@ package org.example.model;
 
 import java.util.Date;
 import java.util.UUID;
+import io.swagger.v3.oas.annotations.Hidden;
 
 public class Entrenamiento {
     private int aprendiz_id;
-    private String id;
+    @Hidden
+    private  String id;
     private String categoria;
     private Date fecha;
 
