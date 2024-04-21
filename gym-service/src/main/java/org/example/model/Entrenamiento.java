@@ -46,7 +46,6 @@ public class Entrenamiento {
     public Date getFecha() {
         return fecha;
     }
-
     public void setFecha(Date fecha) {
         this.fecha = fecha;
     }
