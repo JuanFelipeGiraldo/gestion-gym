@@ -7,16 +7,25 @@ import io.swagger.v3.oas.annotations.Hidden;
 public class Entrenamiento {
     private int aprendiz_id;
     @Hidden
-    private  String id;
+    private String nombreAprendiz;
     private String categoria;
     private Date fecha;
+    @Hidden
+    private  String id;
+    private int tiempoEntrenamiento;
+    @Hidden
+    private String nombreEntrenador;
 
 
-    public Entrenamiento( String categoria, Date fecha, int aprendiz_id) {
-        this.id = UUID.randomUUID().toString();;
+
+    public Entrenamiento(int aprendiz_id, String categoria, Date fecha, int tiempoEntrenamiento) {
+        this.aprendiz_id = aprendiz_id;
+        this.nombreAprendiz = nombreAprendiz;
         this.categoria = categoria;
         this.fecha = fecha;
-        this.aprendiz_id = aprendiz_id;
+        this.tiempoEntrenamiento = tiempoEntrenamiento;
+        this.nombreEntrenador = nombreEntrenador;
+        this.id = UUID.randomUUID().toString();
     }
 
     public int getAprendiz_id() {
@@ -27,12 +36,12 @@ public class Entrenamiento {
         this.aprendiz_id = aprendiz_id;
     }
 
-    public String getId() {
-        return id;
+    public String getNombreAprendiz() {
+        return nombreAprendiz;
     }
 
-    public void setId(String id) {
-        this.id = id;
+    public void setNombreAprendiz(String nombreAprendiz) {
+        this.nombreAprendiz = nombreAprendiz;
     }
 
     public String getCategoria() {
@@ -46,7 +55,32 @@ public class Entrenamiento {
     public Date getFecha() {
         return fecha;
     }
+
     public void setFecha(Date fecha) {
         this.fecha = fecha;
+    }
+
+    public String getId() {
+        return id;
+    }
+
+    public void setId(String id) {
+        this.id = id;
+    }
+
+    public int getTiempoEntrenamiento() {
+        return tiempoEntrenamiento;
+    }
+
+    public void setTiempoEntrenamiento(int tiempoEntrenamiento) {
+        this.tiempoEntrenamiento = tiempoEntrenamiento;
+    }
+
+    public String getNombreEntrenador() {
+        return nombreEntrenador;
+    }
+
+    public void setNombreEntrenador(String nombreEntrenador) {
+        this.nombreEntrenador = nombreEntrenador;
     }
 }

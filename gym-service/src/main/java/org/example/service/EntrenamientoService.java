@@ -28,3 +28,4 @@ private AprendizResponseDTO aprendizdto;
         return comumicationServiceImp.registrarEntrenamiento(entrenamiento);
     }
 }
+
