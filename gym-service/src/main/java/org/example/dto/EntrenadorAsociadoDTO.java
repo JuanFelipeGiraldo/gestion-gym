@@ -5,6 +5,9 @@ public class EntrenadorAsociadoDTO {
     private int identificacion;
     private String nombre;
 
+    public EntrenadorAsociadoDTO() {
+    }
+
     public EntrenadorAsociadoDTO(int identificacion, String nombre) {
         this.identificacion = identificacion;
         this.nombre = nombre;
