@@ -16,15 +16,11 @@ public class Entrenamiento {
     @Hidden
     private String nombreEntrenador;
 
-
-
     public Entrenamiento(int aprendiz_id, String categoria, Date fecha, int tiempoEntrenamiento) {
         this.aprendiz_id = aprendiz_id;
-        this.nombreAprendiz = nombreAprendiz;
         this.categoria = categoria;
         this.fecha = fecha;
         this.tiempoEntrenamiento = tiempoEntrenamiento;
-        this.nombreEntrenador = nombreEntrenador;
         this.id = UUID.randomUUID().toString();
     }
 

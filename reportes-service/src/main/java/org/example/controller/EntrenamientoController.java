@@ -11,17 +11,16 @@ import org.springframework.web.bind.annotation.RestController;
 public class EntrenamientoController {
 
     private EntrenamientoService entrenamientoService;
+
     @Autowired
     public EntrenamientoController(EntrenamientoService entrenamientoService) {
         this.entrenamientoService = entrenamientoService;
     }
 
     @PostMapping("/entrenamiento")
-    public String registrarEntrenamiento(@RequestBody Entrenamiento entrenamiento )  {
-
+    public String registrarEntrenamiento(@RequestBody Entrenamiento entrenamiento) {
         return entrenamientoService.registrarEntrenamiento(entrenamiento);
     }
-
 
 
 }
