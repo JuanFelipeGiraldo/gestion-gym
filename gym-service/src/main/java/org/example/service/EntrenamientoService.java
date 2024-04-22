@@ -1,8 +1,7 @@
 package org.example.service;
 
 import org.example.comunication.ComumicationServiceImp;
-import org.example.comunication.ComunicationService;
-import org.example.dto.AprendizResponseDTO;
+
 import org.example.exception.GymRequestException;
 import org.example.model.Aprendiz;
 import org.example.model.Entrenador;
