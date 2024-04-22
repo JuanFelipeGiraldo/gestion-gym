@@ -1,7 +1,8 @@
 package org.example.service;
 
-import org.example.comunication.ComumicationServiceImp;
 
+
+import org.example.comunication.ComunicationService;
 import org.example.exception.GymRequestException;
 import org.example.model.Aprendiz;
 import org.example.model.Entrenador;
@@ -11,15 +12,15 @@ import org.springframework.stereotype.Service;
 
 @Service
 public class EntrenamientoService {
-    private ComumicationServiceImp comumicationServiceImp;
+    private ComunicationService comumicationService;
     private AprendizService aprendizService;
     private EntrenadorService entrenadorService;
     private Aprendiz aprendiz;
     private Entrenador entrenador;
 
     @Autowired
-    public EntrenamientoService(ComumicationServiceImp comumicationServiceImp, AprendizService aprendizService, EntrenadorService entrenadorService) {
-        this.comumicationServiceImp = comumicationServiceImp;
+    public EntrenamientoService(ComunicationService comumicationServiceImp, AprendizService aprendizService, EntrenadorService entrenadorService) {
+        this.comumicationService = comumicationServiceImp;
         this.aprendizService = aprendizService;
         this.entrenadorService = entrenadorService;
     }
@@ -29,6 +30,6 @@ public class EntrenamientoService {
         entrenador = aprendiz.getEntrenador();
         entrenamiento.setNombreAprendiz(aprendiz.getNombre());
         entrenamiento.setNombreEntrenador(entrenador.getNombre());
-        return comumicationServiceImp.registrarEntrenamiento(entrenamiento);
+        return comumicationService.registrarEntrenamiento(entrenamiento);
     }
 }
