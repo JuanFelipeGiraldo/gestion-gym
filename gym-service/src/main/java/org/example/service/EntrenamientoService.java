@@ -26,7 +26,7 @@ public class EntrenamientoService {
 
     public String registrarEntrenamiento(Entrenamiento entrenamiento) throws GymRequestException {
         aprendiz = aprendizService.traerAprendizId(entrenamiento.getAprendiz_id());
-        entrenador = entrenadorService.consultarEntrenadorPorId(aprendiz.getIdentificacion());
+        entrenador = aprendiz.getEntrenador();
         entrenamiento.setNombreAprendiz(aprendiz.getNombre());
         entrenamiento.setNombreEntrenador(entrenador.getNombre());
         return comumicationServiceImp.registrarEntrenamiento(entrenamiento);
