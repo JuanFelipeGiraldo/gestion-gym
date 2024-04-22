@@ -142,4 +142,16 @@ public class AprendizService {
 
         return aprendiz;
     }*/
+    }
+    public Aprendiz traerAprendizId(int identificacion) throws GymRequestException {
+
+        Optional<Aprendiz> aprendiz = aprendizRepository.findById(identificacion);
+        if (aprendiz.isEmpty()) {
+            throw new GymRequestException("No se encontró el aprendiz.",
+                    new GymDetailsException("El aprendiz con id " + identificacion + " no está registrado",
+                            HttpStatus.NOT_FOUND));
+        }
+        return  aprendiz.get();
+    }
+
 }

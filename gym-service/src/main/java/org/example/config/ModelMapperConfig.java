@@ -9,12 +9,12 @@ import org.springframework.context.annotation.Configuration;
 public class ModelMapperConfig {
 
     @Bean
-    public ModelMapper modelMapper(){
+    public ModelMapper modelMapper() {
         ModelMapper modelMapper = new ModelMapper();
 
         modelMapper.getConfiguration().setPropertyCondition(Conditions.isNotNull());
 
         return modelMapper;
-//        return new ModelMapper();
+
     }
 }

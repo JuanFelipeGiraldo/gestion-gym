@@ -8,7 +8,6 @@ import java.util.Date;
 @Entity
 @Table(name = "aprendices")
 public class Aprendiz {
-
     @Id
     @Column(name = "identificacion")
     private int identificacion; // Identificador único del aprendiz.
@@ -30,7 +29,6 @@ public class Aprendiz {
     @ManyToOne
     @JoinColumn(name = "entrenador_id")
     private Entrenador entrenador;// ID del entrenador asociado al aprendiz.
-
     public Aprendiz() {
     }
 
@@ -101,7 +99,6 @@ public class Aprendiz {
     public void setObjetivoEntrenamiento(String objetivoEntrenamiento) {
         this.objetivoEntrenamiento = objetivoEntrenamiento;
     }
-
     public String getCondicionFisica() {
         return condicionFisica;
     }

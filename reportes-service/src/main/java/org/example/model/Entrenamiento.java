@@ -1,43 +1,38 @@
 package org.example.model;
 
-import java.util.Date;
-import java.util.UUID;
-import io.swagger.v3.oas.annotations.Hidden;
+import org.springframework.data.annotation.Id;
+import org.springframework.data.mongodb.core.mapping.Document;
 
+import java.util.Date;
+
+@Document(collection = "registro")
 public class Entrenamiento {
-    private int aprendiz_id;
-    @Hidden
-    private String nombreAprendiz;
+
+    @Id
+    private String id;
     private String categoria;
     private Date fecha;
-    @Hidden
-    private  String id;
+    private int aprendiz_id;
+    private String nombreAprendiz;
     private int tiempoEntrenamiento;
-    @Hidden
     private String nombreEntrenador;
 
-    public Entrenamiento(int aprendiz_id, String categoria, Date fecha, int tiempoEntrenamiento) {
-        this.aprendiz_id = aprendiz_id;
+    public Entrenamiento(String id, String categoria, Date fecha, int aprendiz_id, String nombreAprendiz, int tiempoEntrenamiento, String nombreEntrenador) {
+        this.id = id;
         this.categoria = categoria;
         this.fecha = fecha;
-        this.tiempoEntrenamiento = tiempoEntrenamiento;
-        this.id = UUID.randomUUID().toString();
-    }
-
-    public int getAprendiz_id() {
-        return aprendiz_id;
-    }
-
-    public void setAprendiz_id(int aprendiz_id) {
         this.aprendiz_id = aprendiz_id;
-    }
-
-    public String getNombreAprendiz() {
-        return nombreAprendiz;
-    }
-
-    public void setNombreAprendiz(String nombreAprendiz) {
         this.nombreAprendiz = nombreAprendiz;
+        this.tiempoEntrenamiento = tiempoEntrenamiento;
+        this.nombreEntrenador = nombreEntrenador;
+    }
+
+    public String getId() {
+        return id;
+    }
+
+    public void setId(String id) {
+        this.id = id;
     }
 
     public String getCategoria() {
@@ -56,12 +51,20 @@ public class Entrenamiento {
         this.fecha = fecha;
     }
 
-    public String getId() {
-        return id;
+    public int getAprendiz_id() {
+        return aprendiz_id;
     }
 
-    public void setId(String id) {
-        this.id = id;
+    public void setAprendiz_id(int aprendiz_id) {
+        this.aprendiz_id = aprendiz_id;
+    }
+
+    public String getNombreAprendiz() {
+        return nombreAprendiz;
+    }
+
+    public void setNombreAprendiz(String nombreAprendiz) {
+        this.nombreAprendiz = nombreAprendiz;
     }
 
     public int getTiempoEntrenamiento() {
