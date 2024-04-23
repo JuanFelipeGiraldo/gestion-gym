@@ -8,13 +8,11 @@ import jakarta.validation.Valid;
 import org.example.dto.AprendizDTO;
 import org.example.dto.AprendizResponseDTO;
 import org.example.exception.GymRequestException;
-import org.example.model.Aprendiz;
-import org.example.service.AprendizService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.*;
+import org.example.service.AprendizService;
 
 import java.util.List;
 
