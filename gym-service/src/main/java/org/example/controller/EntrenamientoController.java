@@ -8,10 +8,7 @@ import org.example.exception.GymRequestException;
 import org.example.model.Entrenamiento;
 import org.example.service.EntrenamientoService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping("api/")
@@ -33,6 +30,16 @@ public class EntrenamientoController {
     @PostMapping("/entrenamiento")
     public String registrarEntrenamiento(@RequestBody Entrenamiento entrenamiento ) throws GymRequestException {
         return entrenamientoService.registrarEntrenamiento(entrenamiento);
+    }
+    @Operation(summary = "Generar registro de entrenamiento", description = "se realiza la solicitudd para traer todos los reportes de entrenamientos ")
+    @ApiResponses(value = {
+            @ApiResponse(responseCode = "200", description = "Reporte generado correctamente."),
+            @ApiResponse(responseCode = "400", description = "Error de usuario. La solicitud es incorrecta"),
+            @ApiResponse(responseCode = "500", description = "Error interno del servidor.")
+    })
+    @GetMapping("/reporte/{aprendizId}/{mes}/{anio}")
+    public String generarReporteMensual(@PathVariable int aprendizId, @PathVariable int mes, @PathVariable int anio) throws GymRequestException {
+        return entrenamientoService.traerReporteEntrenamientos(aprendizId,mes,anio);
     }
 
 }

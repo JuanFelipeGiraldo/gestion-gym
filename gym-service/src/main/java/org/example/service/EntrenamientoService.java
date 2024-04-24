@@ -9,6 +9,7 @@ import org.example.model.Entrenador;
 import org.example.model.Entrenamiento;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.web.bind.annotation.PathVariable;
 
 @Service
 public class EntrenamientoService {
@@ -31,5 +32,11 @@ public class EntrenamientoService {
         entrenamiento.setNombreAprendiz(aprendiz.getNombre());
         entrenamiento.setNombreEntrenador(entrenador.getNombre());
         return comumicationService.registrarEntrenamiento(entrenamiento);
+    }
+
+    public String traerReporteEntrenamientos (int aprendizId, int mes,int anio) throws GymRequestException {
+        aprendiz = aprendizService.traerAprendizId(aprendizId);
+        return comumicationService.generarReporteMensual(aprendizId,mes,anio);
+
     }
 }
