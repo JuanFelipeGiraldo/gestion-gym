@@ -8,6 +8,7 @@ import jakarta.validation.Valid;
 import org.example.dto.AprendizDTO;
 import org.example.dto.AprendizResponseDTO;
 import org.example.exception.GymRequestException;
+import org.example.model.Aprendiz;
 import org.example.service.AprendizService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -56,8 +57,8 @@ public class AprendizController {
     }
 
     @Operation(summary = "Actualizar un aprendiz", description = "Actualiza los datos de un aprendiz en la base de datos SQL.")
-    @PutMapping("/aprendiz")
-    public ResponseEntity<AprendizResponseDTO> actualizarAprendiz(@RequestBody AprendizDTO aprendizDTO) throws GymRequestException {
+    @PutMapping("/aprendiz/{identificacion}")
+    public ResponseEntity<AprendizResponseDTO> actualizarAprendiz(@PathVariable("identificacion") int identificacion, @RequestBody AprendizDTO aprendizDTO) throws GymRequestException {
         AprendizResponseDTO response = aprendizService.actualizarAprendiz(aprendizDTO);
         return new ResponseEntity<>(response, HttpStatus.OK);
     }
@@ -68,17 +69,5 @@ public class AprendizController {
         aprendizService.eliminarAprendizPorId(idenditifacion);
         return new ResponseEntity<>("El aprendiz se ha eliminado con éxito", HttpStatus.OK);
     }
-
-
-
-
-
-
-
-
-
-
-
-
 
 }
