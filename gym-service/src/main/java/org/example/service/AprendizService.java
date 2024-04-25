@@ -144,7 +144,7 @@ public class AprendizService {
 
         return aprendiz;
     }*/
-    }
+
     public Aprendiz traerAprendizId(int identificacion) throws GymRequestException {
 
         Optional<Aprendiz> aprendiz = aprendizRepository.findById(identificacion);
