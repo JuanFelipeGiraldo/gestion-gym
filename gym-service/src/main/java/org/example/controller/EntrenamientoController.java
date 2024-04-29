@@ -11,7 +11,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
-@RequestMapping("api/")
+@RequestMapping("/api")
 @Tag(name = "Recurso Entrenamiento", description = "Controller Entrenamiento")
 public class EntrenamientoController {
 

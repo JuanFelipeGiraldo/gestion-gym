@@ -17,7 +17,7 @@ import org.example.service.AprendizService;
 import java.util.List;
 
 @RestController
-@RequestMapping("api/")
+@RequestMapping("/api")
 @Tag(name = "Recurso Aprendiz")
 public class AprendizController {
 

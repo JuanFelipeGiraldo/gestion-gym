@@ -19,7 +19,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@RequestMapping("api/")
+@RequestMapping("/api")
 @Tag(name = "Recurso Entrenador", description = "Controller Entrenador")
 public class EntrenadorController {
 

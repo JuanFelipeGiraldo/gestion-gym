@@ -100,5 +100,15 @@ public class Entrenador {
     public void setCertificaciones(String certificaciones) {
         this.certificaciones = certificaciones;
     }
+
+    @Override
+    public String toString() {
+        return "Entrenador{" +
+                "identificacion=" + identificacion +
+                ", nombre='" + nombre + '\'' +
+                ", email='" + email + '\'' +
+                ", especialidad='" + especialidad + '\'' +
+                '}';
+    }
 }
 
