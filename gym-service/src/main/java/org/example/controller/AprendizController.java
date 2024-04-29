@@ -18,7 +18,7 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/api")
-@Tag(name = "Recurso Aprendiz")
+@Tag(name = "Gestiones del Aprendiz 🦸‍♀️🦸‍♂️")
 public class AprendizController {
 
     private final AprendizService aprendizService;
@@ -28,18 +28,6 @@ public class AprendizController {
         this.aprendizService = aprendizService;
     }
 
-    @Operation(summary = "Crea un nuevo aprendiz", description = "Crea un nuevo aprendiz en la base de datos SQL.")
-    @ApiResponses(value = {
-            @ApiResponse(responseCode = "200", description = "Aprendiz creado exitosamente."),
-            @ApiResponse(responseCode = "400", description = "Error de usuario. La solicitud es incorrecta"),
-            @ApiResponse(responseCode = "404", description = "Error de usuario. No existe el recurso solicitado"),
-            @ApiResponse(responseCode = "500", description = "Error interno del servidor.")
-    })
-    @PostMapping("/aprendiz")
-    public ResponseEntity<AprendizResponseDTO> crearAprendiz(@RequestBody @Valid AprendizDTO aprendizDTO) throws GymRequestException {
-        AprendizResponseDTO response = aprendizService.crearAprendiz(aprendizDTO);
-        return new ResponseEntity<>(response, HttpStatus.CREATED);
-    }
 
     @Operation(summary = "Consultar todos los aprendices", description = "Consulta todos los aprendices en la base de datos SQL.")
     @GetMapping("/aprendices")

@@ -20,7 +20,7 @@ public class SwaggerConfig {
                                 ("Bearer Authentication", createAPIKeyScheme()))
                         .info(new Info()
                                 .title("API RESTful para Gestión de un Gimnasio")
-                                .description("La aplicación facilita el registro de entrenadores y aprendices, además de " +
+                                .description("La aplicación facilita el registro y gestión de entrenadores y aprendices, además de " +
                                         "administrar las actividades de entrenamiento de cada aprendiz, permitiendo " +
                                                 "generar reportes detallados de sus entrenamientos.")
                                 .version("🔩 1.0")

@@ -30,13 +30,7 @@ public class UserSecurityService implements UserDetailsService {
         Optional<Aprendiz> aprendiz = aprendizRepository.findById(Integer.parseInt(username));
 
         if (aprendiz.isEmpty()) {
-            try {
-                throw new GymRequestException("\n-->No se encontró el username.",
-                        new GymDetailsException("El aprendiz no está registrado",
-                                HttpStatus.NOT_FOUND));
-            } catch (GymRequestException e) {
-                throw new RuntimeException(e);
-            }
+                throw new UsernameNotFoundException("\n-->No se encontró el username.");
         }
         System.out.println(aprendiz.get());
 

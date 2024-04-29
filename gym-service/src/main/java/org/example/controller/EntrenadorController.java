@@ -1,12 +1,7 @@
 package org.example.controller;
 
-
 import io.swagger.v3.oas.annotations.Operation;
-import io.swagger.v3.oas.annotations.responses.ApiResponse;
-import io.swagger.v3.oas.annotations.responses.ApiResponses;
 import io.swagger.v3.oas.annotations.tags.Tag;
-import org.example.dto.AprendizDTO;
-import org.example.dto.AprendizResponseDTO;
 import org.example.dto.EntrenadorDTO;
 import org.example.dto.EntrenadorResponseDTO;
 import org.example.exception.GymRequestException;
@@ -20,7 +15,7 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/api")
-@Tag(name = "Recurso Entrenador", description = "Controller Entrenador")
+@Tag(name = "Gestiones del Entrenador 🧙‍♀️🧙‍♂️")
 public class EntrenadorController {
 
     private final EntrenadorService entrenadorService;
@@ -28,18 +23,6 @@ public class EntrenadorController {
     @Autowired
     public EntrenadorController(EntrenadorService entrenadorService) {
         this.entrenadorService = entrenadorService;
-    }
-
-    @Operation(summary = "Crear un entrenador", description = "Crear un nuevo entrenador en la base de datos SQL.")
-    @ApiResponses(value = {
-            @ApiResponse(responseCode = "200", description = "Entrenador creado exitosamente."),
-            @ApiResponse(responseCode = "400", description = "Error de usuario. La solicitud es incorrecta"),
-            @ApiResponse(responseCode = "500", description = "Error interno del servidor.")
-    })
-    @PostMapping("/entrenador")
-    public ResponseEntity<EntrenadorResponseDTO> crearEntrenador(@RequestBody EntrenadorDTO entrenadorDTO) throws GymRequestException {
-        EntrenadorResponseDTO response = entrenadorService.crearEntrenador(entrenadorDTO);
-        return new ResponseEntity<>(response, HttpStatus.CREATED);
     }
 
     @Operation(summary = "Consultar todos los entrenadores", description = "Consulta todos los entrenadores en la base de datos SQL.")

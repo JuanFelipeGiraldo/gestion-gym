@@ -32,6 +32,11 @@ public class Aprendiz {
     public Aprendiz() {
     }
 
+    public Aprendiz(int identificacion, String password) {
+        this.identificacion = identificacion;
+        this.password = password;
+    }
+
     public Aprendiz(Entrenador entrenador, int identificacion, String nombre, String correo, String password, Date cumpleanos, String genero, String objetivoEntrenamiento, String condicionFisica) {
         this.entrenador = entrenador;
         this.identificacion = identificacion;

@@ -1,6 +1,7 @@
 package org.example.service;
 
 import org.example.Mapper.AprendizMapper;
+import org.example.config.SecurityConfig;
 import org.example.dto.AprendizDTO;
 import org.example.dto.AprendizResponseDTO;
 import org.example.exception.GymDetailsException;
@@ -23,15 +24,16 @@ public class AprendizService {
     private AprendizRepository aprendizRepository;
     private EntrenadorRepository entrenadorRepository;
     private EntrenadorService entrenadorService;
+    private SecurityConfig securityConfig;
 
     @Autowired
-    public AprendizService(AprendizRepository aprendizRepository, EntrenadorRepository entrenadorRepository) {
+    public AprendizService(AprendizRepository aprendizRepository, EntrenadorRepository entrenadorRepository, SecurityConfig securityConfig) {
         this.aprendizRepository = aprendizRepository;
         this.entrenadorRepository = entrenadorRepository;
-        this.entrenadorService = entrenadorService;
+        this.securityConfig = securityConfig;
     }
 
-    public AprendizResponseDTO crearAprendiz(AprendizDTO aprendizDTO) throws GymRequestException {
+    public void crearAprendiz(AprendizDTO aprendizDTO) throws GymRequestException {
 
         Optional<Aprendiz> aprendiz = aprendizRepository
                 .findById(aprendizDTO.getIdentificacion());
@@ -50,13 +52,12 @@ public class AprendizService {
                             HttpStatus.NOT_FOUND));
         }
 
+        aprendizDTO.setPassword(securityConfig.passwordEncoder().encode(aprendizDTO.getPassword()));
         aprendizRepository.save(AprendizMapper.INSTANCE
                 .mapAprendizDtoToAprendiz( aprendizDTO, entrenador.get() ));
 
-        AprendizResponseDTO aprendizResponse = AprendizMapper.INSTANCE
+        AprendizMapper.INSTANCE
                 .mapAprendizDtoToAprendizResponse( aprendizDTO, entrenador.get() );
-
-        return aprendizResponse;
     }
 
     public List<AprendizResponseDTO> consultarAprendices(){
@@ -100,6 +101,7 @@ public class AprendizService {
                             " no está registrado o no está asociado al aprendiz",
                             HttpStatus.NOT_FOUND));
         }
+        aprendizDTO.setPassword(securityConfig.passwordEncoder().encode(aprendizDTO.getPassword()));
         aprendizRepository.save(AprendizMapper.INSTANCE
                 .mapAprendizDtoToAprendiz( aprendizDTO, entrenador.get() ));
 

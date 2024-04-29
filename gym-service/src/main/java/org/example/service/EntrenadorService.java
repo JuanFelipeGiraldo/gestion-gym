@@ -1,17 +1,15 @@
 package org.example.service;
 
-import org.apache.logging.log4j.CloseableThreadContext;
 import org.example.Mapper.EntrenadorMapper;
+import org.example.config.SecurityConfig;
 import org.example.dto.EntrenadorDTO;
 import org.example.dto.EntrenadorResponseDTO;
 import org.example.exception.GymDetailsException;
 import org.example.exception.GymRequestException;
-import org.example.model.Aprendiz;
 import org.example.model.Entrenador;
 import org.example.repository.EntrenadorRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -22,13 +20,15 @@ import java.util.stream.Collectors;
 public class EntrenadorService {
 
      private EntrenadorRepository entrenadorRepository;
+    private SecurityConfig securityConfig;
 
     @Autowired
-    public EntrenadorService(EntrenadorRepository entrenadorRepository) {
+    public EntrenadorService(EntrenadorRepository entrenadorRepository, SecurityConfig securityConfig) {
         this.entrenadorRepository = entrenadorRepository;
+        this.securityConfig = securityConfig;
     }
 
-    public EntrenadorResponseDTO crearEntrenador(EntrenadorDTO entrenadorDTO) throws GymRequestException {
+    public void crearEntrenador(EntrenadorDTO entrenadorDTO) throws GymRequestException {
 
         Optional<Entrenador> entrenador = entrenadorRepository
                 .findById(entrenadorDTO.getIdentificacion());
@@ -38,11 +38,11 @@ public class EntrenadorService {
                     new GymDetailsException("El entrenador con id " + entrenadorDTO.getIdentificacion() + " ya existe.",
                     HttpStatus.CONFLICT));
         }
-
+        entrenadorDTO.setPassword(securityConfig.passwordEncoder().encode(entrenadorDTO.getPassword()));
         entrenadorRepository.save(EntrenadorMapper.INSTANCE
                 .entrenadorDtoToEntrenador(entrenadorDTO));
 
-        return EntrenadorMapper.INSTANCE.
+        EntrenadorMapper.INSTANCE.
                 entrenadorDtoToEntrenadorResponse(entrenadorDTO);
     }
 
@@ -78,6 +78,7 @@ public class EntrenadorService {
                     new GymDetailsException("El aprendiz no está registrado",
                             HttpStatus.NOT_FOUND));
         }
+        entrenadorDTO.setPassword(securityConfig.passwordEncoder().encode(entrenadorDTO.getPassword()));
         entrenadorRepository.save( EntrenadorMapper.INSTANCE
                 .entrenadorDtoToEntrenador(entrenadorDTO));
 

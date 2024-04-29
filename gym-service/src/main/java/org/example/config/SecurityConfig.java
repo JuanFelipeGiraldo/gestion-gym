@@ -50,13 +50,6 @@ public class SecurityConfig {
                 //.httpBasic(Customizer.withDefaults());
         return http.build();
     }
-        /*"/v2/api-docs",
-        "/configuration/ui",
-        "/swagger-resources/**",
-        "/configuration/**",
-        "/swagger-ui/",
-        "/swagger-ui.html",
-        "/webjars/**"*/
 
     // UsernamePasswordAuthenticationFilter -> Es el primer filtro de seguridad de auntenticación que tiene spring
 
@@ -76,7 +69,6 @@ public class SecurityConfig {
 
         return new InMemoryUserDetailsManager(admin, customer);
     }*/
-
 
     @Bean
     public AuthenticationManager authenticationManager(AuthenticationConfiguration configuration) throws Exception {
