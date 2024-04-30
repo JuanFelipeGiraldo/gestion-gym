@@ -124,27 +124,6 @@ public class AprendizService {
         aprendizRepository.deleteById(identificacion);
     }
 
-   /* public AprendizResponseDTO mapearDtoToAprendizResponse(AprendizDTO aprendizDTO, Entrenador entrenador){
-
-        EntrenadorAsociadoDTO entrenadorAsociado = EntrenadorMapper.INSTANCE
-                .entrenadorToEntrenadorAsociado(entrenador);
-
-        AprendizResponseDTO aprendizResponseDto = AprendizMapper.INSTANCE
-                .aprendizDtoToAprendizResponse(aprendizDTO);
-        aprendizResponseDto.setEntrenadorAsociado(entrenadorAsociado);
-
-        return aprendizResponseDto;
-    }
-
-    public Aprendiz mapearDtoToAprendiz(AprendizDTO aprendizDTO, Entrenador entrenador){
-
-        Aprendiz aprendiz = AprendizMapper.INSTANCE
-                .aprendizDtoToAprendiz(aprendizDTO);
-        aprendiz.setEntrenador(entrenador);
-
-        return aprendiz;
-    }*/
-    }
     public Aprendiz traerAprendizId(int identificacion) throws GymRequestException {
 
         Optional<Aprendiz> aprendiz = aprendizRepository.findById(identificacion);
