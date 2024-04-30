@@ -23,7 +23,6 @@ public class AprendizService {
 
     private AprendizRepository aprendizRepository;
     private EntrenadorRepository entrenadorRepository;
-    private EntrenadorService entrenadorService;
     private SecurityConfig securityConfig;
 
     @Autowired

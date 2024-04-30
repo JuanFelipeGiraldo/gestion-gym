@@ -15,6 +15,7 @@ public class Entrenador {
     private String nombre;
 
     @Column(name = "email")
+
     private String email;
 
     @Column(name = "password")

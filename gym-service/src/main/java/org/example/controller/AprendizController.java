@@ -1,18 +1,15 @@
 package org.example.controller;
 
 import io.swagger.v3.oas.annotations.Operation;
-import io.swagger.v3.oas.annotations.responses.ApiResponse;
-import io.swagger.v3.oas.annotations.responses.ApiResponses;
 import io.swagger.v3.oas.annotations.tags.Tag;
-import jakarta.validation.Valid;
 import org.example.dto.AprendizDTO;
 import org.example.dto.AprendizResponseDTO;
 import org.example.exception.GymRequestException;
+import org.example.service.AprendizService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-import org.example.service.AprendizService;
 
 import java.util.List;
 
@@ -27,7 +24,6 @@ public class AprendizController {
     public AprendizController(AprendizService aprendizService) {
         this.aprendizService = aprendizService;
     }
-
 
     @Operation(summary = "Consultar todos los aprendices", description = "Consulta todos los aprendices en la base de datos SQL.")
     @GetMapping("/aprendices")

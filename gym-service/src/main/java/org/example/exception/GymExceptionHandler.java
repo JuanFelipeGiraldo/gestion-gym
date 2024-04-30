@@ -5,8 +5,6 @@ import org.slf4j.LoggerFactory;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.authentication.BadCredentialsException;
-import org.springframework.security.authentication.InternalAuthenticationServiceException;
-import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.validation.FieldError;
 import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.ExceptionHandler;
@@ -52,33 +50,5 @@ public class GymExceptionHandler  {
     public ResponseEntity<String> handleInternalAuthenticationServiceException(BadCredentialsException ex) {
         return ResponseEntity.badRequest().body("Error de autenticación: " + ex.getMessage());
     }
-
-  /*  @ExceptionHandler(value = {UsernameNotFoundException.class})
-    @ResponseStatus(HttpStatus.BAD_REQUEST)
-    public ResponseEntity<String> handleUsernameNotFoundException(UsernameNotFoundException ex) {
-        return ResponseEntity.badRequest().body("Usuario o contraseña inválidos: " + ex.getMessage());
-    }*/
-
-
-    //UsernameNotFoundException
-
-    /*@Override
-    protected ResponseEntity<Object> handleMethodArgumentNotValid(MethodArgumentNotValidException ex, HttpHeaders headers, HttpStatusCode status, WebRequest request) {
-        Map<String, String> errors = new HashMap<String, String>();
-        ex.getBindingResult().getAllErrors().forEach( error -> {
-            String fieldName = ((FieldError) error).getField();
-            String message = error.getDefaultMessage();
-
-            errors.put(fieldName, message);
-        });
-        return new ResponseEntity<>(errors, status);
-    }*/
-
-    /*@Override
-    protected ResponseEntity<Object> handleHttpMessageNotReadable(HttpMessageNotReadableException ex, HttpHeaders headers, HttpStatusCode status, WebRequest request) {
-        Map<String, String> response = new HashMap<>();
-        response.put("JSON incorrecto",ex.getMessage());
-        return new ResponseEntity<>(response, status);
-    }*/
 
 }

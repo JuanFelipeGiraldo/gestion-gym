@@ -8,7 +8,6 @@ import org.example.model.Entrenador;
 import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
 import org.mapstruct.factory.Mappers;
-import org.springframework.context.annotation.Configuration;
 
 @Mapper
 public interface AprendizMapper {
