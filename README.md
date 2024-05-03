@@ -1,4 +1,4 @@
-![Descripción de la imagen](portada.jpg)
+![Descripción de la imagen]()
 ## API REST Gestion gimnasio 🤸‍♀️🏋️‍♀️
 Se ha desarrollado una aplicación RESTful (API REST) utilizando Java 17.0.9 en el entorno de programación IntelliJ IDEA, con el fin de gestionar el registro y control de entrenamientos, entrenadores y aprendices. Esta aplicación hace uso del gestor de dependencias Maven para facilitar la gestión de librerías y componentes necesarios.
 ![Descripción de la imagen](desarrollo.jpg)
